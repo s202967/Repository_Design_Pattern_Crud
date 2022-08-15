@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Employee>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Employee Index</h1>
+
+<div class="container p-3">
+    <div class="col-6 text-end">
+        <a asp-controller="Employee" asp-action="Create" class="btn btn-primary"> Create Employee</a>
+    </div>
+
+</div>
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Employee Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Position
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @using (Html.BeginForm())
+        {
+            @foreach (var a in Model)
+            {
+                <tr>
+                    <td width="10%">
+                        @a.EmployeeId
+                    </td>
+                    <td width="10%">
+                        @a.Name
+                    </td>
+                    <td width="10%">
+                        @a.Position
+                    </td>
+                    <td width="10%">
+                        <a asp-controller="Employee" asp-action="Edit" asp-route-id="@a.EmployeeId">  <i class="bi bi-pencil-square"></i> Edit</a> |
+                        <button asp-controller="Employee" asp-action="Delete" type="submit" class="btn-btn danger" onclick="return confirm('Are you sure want to delete @a.Name')" asp-route-id="@a.EmployeeId"> Delete</button>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
