@@ -1,3 +1,4 @@
+using Employee_WebAPI.Factory;
 using EmployeesWeb.Data;
 using EmployeesWeb.Repository;
 using EmployeesWeb.Services;
@@ -16,6 +17,7 @@ builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericReposi
 builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<IEmployeeService, EmployeeService>();
+builder.Services.AddTransient<IEmployeeFactory, EmployeeFactory>();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 

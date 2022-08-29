@@ -553,3 +553,6 @@ C:\Users\sunil\Desktop\asp.net_6.0\Employees\EmployeesWeb\bin\Debug\net6.0\runti
 C:\Users\sunil\Desktop\asp.net_6.0\Employees\EmployeesWeb\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\sunil\Desktop\asp.net_6.0\Employees\EmployeesWeb\bin\Debug\net6.0\Services.dll
 C:\Users\sunil\Desktop\asp.net_6.0\Employees\EmployeesWeb\bin\Debug\net6.0\Services.pdb
+C:\Users\sunil\Desktop\asp.net_6.0\Employees\EmployeesWeb\bin\Debug\net6.0\libman.json
+C:\Users\sunil\Desktop\asp.net_6.0\Employees\EmployeesWeb\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\sunil\Desktop\asp.net_6.0\Employees\EmployeesWeb\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

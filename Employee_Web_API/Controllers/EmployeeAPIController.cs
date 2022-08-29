@@ -1,7 +1,10 @@
-﻿using EmployeesWeb.Data;
+﻿using Employee_WebAPI.DTO;
+using Employee_WebAPI.Factory;
+using EmployeesWeb.Data;
 using EmployeesWeb.Models;
 using EmployeesWeb.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Employee_Web_API.Controllers
 {
@@ -10,43 +13,78 @@ namespace Employee_Web_API.Controllers
     public class EmployeeAPIController : Controller
     {
         private readonly IEmployeeService _employeeService;
-        private readonly ApplicationDbContext _context;
+        private readonly IEmployeeFactory _employeeFactory;
 
-        public EmployeeAPIController(IEmployeeService employeeService, ApplicationDbContext context)
+        public EmployeeAPIController(IEmployeeService employeeService, IEmployeeFactory employeeFactory)
         {
             _employeeService = employeeService;
-            _context = context;
+            _employeeFactory = employeeFactory;
+
         }
 
+
+        [Route("Getall")]
         [HttpGet]
-        public async Task<ActionResult<List<Employee>>> GetAll()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+
+        public async Task<ActionResult<List<EmployeeDTO>>> GetAll()
         {
-            var resp = await _employeeService.GetAllAsync().ConfigureAwait (false);
-            return Ok(resp);
+            var resp = await _employeeService.GetAllAsync().ConfigureAwait(false);
+            var empDTOs = resp.Select(x => _employeeFactory.MapEmployeeEntityToDTO(x)).ToList();
+            //var data = await _employeeService.GetAllAsync().ConfigureAwait(false);
+            //var dataDTO = _employeeFactory.MapEmployeeEntityToDTO(data);
+            return Ok(empDTOs);
         }
 
 
-        [HttpGet("id")]
-        [ProducesResponseType(404)]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(400)]
+
+        [Route("Employee/{id}")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Employee>> FindByAsync(int id)
         {
-            if(id == 0)
+            if (id == 0)
             {
                 return BadRequest();
             }
             var resp = await _employeeService.FindByIdAsync(id).ConfigureAwait(false);
-            if(resp == null)
+            if (resp == null)
             {
                 return NotFound();
             }
-            return Ok(resp);
+            var empDTOs = _employeeFactory.MapEmployeeEntityToDTO(resp);
+            return Ok(empDTOs);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Employee>> CreateAsync(EmployeeDTO empDTO)
+        {
+            var data = _employeeFactory.MapEmployeeDTOToEntity(empDTO);
+            await _employeeService.CreateAsync(data).ConfigureAwait(false);
+            return Ok("Created Sucessfully");
+            //var data = _employeeFactory.MapEmployeeDTOToEntity(dto);
+            // await _employeeService.CreateAsync(employee);
         }
 
 
 
-        
-        
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Employee>> EditAsync(EmployeeDTO empDTO)
+        {
+            var data = _employeeFactory.MapEmployeeDTOToEntity(empDTO);
+            await _employeeService.EditAsync(data).ConfigureAwait(false);
+            return Ok("Updated Successfully");
+        }
+
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<EmployeeDTO>> DeleteAsync(int id)
+        {
+            await _employeeService.DeleteAsync(id).ConfigureAwait(false);
+            return Ok("Deleted Successfully");
+        }
+
     }
 }

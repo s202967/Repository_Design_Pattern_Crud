@@ -3,16 +3,17 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Employee Index</h1>
+<h4>Employee Table</h4>
 
+<link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet"  />
 <div class="container p-3">
-    <div class="col-6 text-end">
+    <div class="col-10 text-end">
         <a asp-controller="Employee" asp-action="Create" class="btn btn-primary"> Create Employee</a>
     </div>
 
 </div>
 
-<table class="table table-bordered table-striped" style="width:100%">
+<table class="display" id="abc" style="width:100%">
     <thead>
         <tr>
             <th>
@@ -45,12 +46,12 @@
                         @a.Position
                     </td>
                     <td width="10%">
-                        <a asp-controller="Employee" asp-action="Edit" asp-route-id="@a.EmployeeId">  <i class="bi bi-pencil-square"></i> Edit</a> |
-                        <button asp-controller="Employee" asp-action="Delete" type="submit" class="btn-btn danger" onclick="return confirm('Are you sure want to delete @a.Name')" asp-route-id="@a.EmployeeId"> Delete</button>
+                        <a asp-controller="Employee" asp-action="Edit" asp-route-id="@a.EmployeeId"> Edit</a> |
+                        <a asp-controller="Employee" asp-action="Delete" asp-route-id="@a.EmployeeId"> Delete</a>
+                        @*<button asp-controller="Employee" asp-action="Delete" type="submit" class="btn-btn danger" onclick="return confirm('Are you sure want to delete @a.Name')" asp-route-id="@a.EmployeeId"> Delete</button>*@
                     </td>
                 </tr>
             }
         }
     </tbody>
 </table>
-

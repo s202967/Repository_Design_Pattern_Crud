@@ -8,15 +8,32 @@ namespace EmployeesWeb.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EmployeeId { get; set; }
+
+        [StringLength(50)]
         [Required]
+        public string? Name { get; set; }
+        [Required]
+        public string? Position { get; set; }
 
-        public string Name { get; set; }
+        [StringLength(100)]
+        [Required]
+        [EmailAddress]
+        public string? Email { get; set; }
 
-        public string Position { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? DateOfBirth { get; set; }
+        public Guid? CreatedBy { get; set; }
 
-        public string Email { get; set; }
+        public DateTime? CreatedOn { get; set; }
 
+        public Guid? ModifiedBy { get; set; }
 
+        public DateTime? ModifiedOn{ get; set; }
 
+        public Guid? DeletedBy{ get; set; }
+
+        public DateTime? DeletedOn{ get; set; }
+
+        public  bool IsDeleted { get; set; }
     }
 }

@@ -1,30 +1,45 @@
 ﻿@model Employee
 
 <form method="post">
-    <div class="border p-3 mt-4">
+    <div class="border p-3 mt-4 " style="width:40%">
         <div class="row pb-2">
-            <h2 class="text-primary">Create Employee </h2>
+            <h3 class="text-primary">Create Employee </h3>
         </div>
         <div asp-validation-summary="All"></div>
         @*<div class="mb-3">
-            <label asp-for="EmployeeId"></label>
-            <input asp-for="EmployeeId" class="form-control"/>
-            <span asp-validation-for = "EmployeeId" class="text-danger"></span>
-         </div>*@
+        <label asp-for="EmployeeId"></label>
+        <input asp-for="EmployeeId" class="form-control"/>
+        <span asp-validation-for = "EmployeeId" class="text-danger"></span>
+        </div>*@
         <div class="mb-3">
             <label asp-for="Name"></label>
-            <input asp-for="Name" class="form-control"/>
-            <span asp-validation-for = "Name" class="text-danger"></span>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="Position"></label>
-            <input asp-for="Position" class="form-control"/>
-            <span asp-validation-for = "Position" class="text-danger"></span>
+            <input asp-for="Position" class="form-control" />
+            <span asp-validation-for="Position" class="text-danger"></span>
         </div>
+
+@*        <div class="mb-3">
+            <label asp-for="Position" class="control-lable"></label>
+            <select asp-for="Position" class="custom-select">
+                <option value="">Choose Position</option>
+                <option value="1">Manager</option>
+                <option value="2">Dotnet Developer</option>
+                <option value="3">React Developer</option>
+                <option value="4">Python Developer</option>
+                <option value="5">QA Engineer</option>
+                <option value="6">HR Manager</option>
+            </select>
+            <span asp-validation-for="Position" class="text-danger"></span>
+        </div>*@
+
         <div class="mb-3">
             <label asp-for="Email"></label>
-            <input asp-for="Email" class="form-control"/>
-            <span asp-validation-for = "Email" class="text-danger"></span>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
         </div>
         <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
         <a asp-controller="Employee" asp-action="Index" class="btn btn-secondary" style="width:150px">Back To List</a>

@@ -1,5 +1,6 @@
 ﻿using EmployeesWeb.Data;
 using EmployeesWeb.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeesWeb.Repository
 {
@@ -7,6 +8,15 @@ namespace EmployeesWeb.Repository
     {
         public EmployeeRepository(ApplicationDbContext db) : base(db)
         {
+        }
+
+        public async Task<List<Employee>> GetAllEmployeeFromProcAsync(int id)
+        {
+            var res = await _db.employees
+            .FromSqlRaw(String.Format($"EXECUTE spEmployee_GetAll {id}"))
+            .ToListAsync().ConfigureAwait(false);
+
+            return res;
         }
     }
 }

@@ -46,7 +46,9 @@ namespace EmployeesWeb.Controllers
                 //_db.SaveChanges();
                 //return RedirectToAction("Index");
             }
-            return RedirectToAction(nameof(Index));
+            return View(obj);
+
+            //return RedirectToAction(nameof(Index));
 
         }
 
