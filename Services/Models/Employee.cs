@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmployeesWeb.Models
@@ -15,6 +16,7 @@ namespace EmployeesWeb.Models
         [Required]
         public string? Position { get; set; }
 
+
         [StringLength(100)]
         [Required]
         [EmailAddress]
@@ -22,6 +24,11 @@ namespace EmployeesWeb.Models
 
         [DataType(DataType.Date)]
         public DateTime? DateOfBirth { get; set; }
+
+        [NotMapped]
+        public IFormFile? ProfilePicture { get; set; }
+        public string? ProfilePictureUrl { get; set; } 
+
         public Guid? CreatedBy { get; set; }
 
         public DateTime? CreatedOn { get; set; }

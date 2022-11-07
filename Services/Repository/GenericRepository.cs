@@ -14,48 +14,53 @@ namespace EmployeesWeb.Repository
             _db = db;
         }
 
-        public void Add(T entity)
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-            _db.Set<T>().Add(entity);
+            return await _db.Set<T>().ToListAsync().ConfigureAwait(false);
+        }
+
+        public async Task<T?> GetByIdAsync(int id)
+        {
+            return await _db.Set<T>().FindAsync(id).ConfigureAwait(false);
         }
 
         public async Task AddAsync(T entity)
         {
             await _db.Set<T>().AddAsync(entity).ConfigureAwait(false);
         }
-        public void AddRange(IEnumerable<T> entities)
+
+        public void Update(T entity)
         {
-            _db.Set<T>().AddRange(entities);
-        }
-        public IEnumerable<T> Find(Expression<Func<T, bool>> expression)
-        {
-            return _db.Set<T>().Where(expression);
-        }
-        public async Task<IEnumerable<T>> GetAllAsync()
-        {
-            return await _db.Set<T>().ToListAsync().ConfigureAwait(false);
+            _db.Entry(entity).State = EntityState.Modified;
         }
 
         public void Remove(T entity)
         {
             _db.Set<T>().Remove(entity);
         }
-        public void RemoveRange(IEnumerable<T> entities)
-        {
-            _db.Set<T>().RemoveRange(entities);
-        }
-        public void Update(T entity)
-        {
-            _db.Entry(entity).State = EntityState.Modified;
-        }
-        public async Task<T?> GetByIdAsync(int id)
-        {
-            return await _db.Set<T>().FindAsync(id).ConfigureAwait(false);
-        }
 
         public void SaveChanges()
         {
             _db.SaveChanges();
+        }
+        public void RemoveRange(IEnumerable<T> entities)
+        {
+            _db.Set<T>().RemoveRange(entities);
+        }
+
+        public void Add(T entity)
+        {
+            _db.Set<T>().Add(entity);
+        }
+
+        public void AddRange(IEnumerable<T> entities)
+        {
+            _db.Set<T>().AddRange(entities);
+        }
+
+        public IEnumerable<T> Find(Expression<Func<T, bool>> expression)
+        {
+            return _db.Set<T>().Where(expression);
         }
     }
 }

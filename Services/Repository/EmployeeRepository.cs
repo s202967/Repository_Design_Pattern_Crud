@@ -14,8 +14,7 @@ namespace EmployeesWeb.Repository
         {
             var res = await _db.employees
             .FromSqlRaw(String.Format($"EXECUTE spEmployee_GetAll {id}"))
-            .ToListAsync().ConfigureAwait(false);
-
+            .ToListAsync();
             return res;
         }
     }

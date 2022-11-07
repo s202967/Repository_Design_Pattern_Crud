@@ -12,11 +12,11 @@ namespace Employee_WebAPI.Factory
             entity.Name = dto.Name;
             entity.Email = dto.Email;
             entity.Position = dto.Position;
-            entity.DateOfBirth = dto.DateOfBirth;
+            //entity.DateOfBirth = dto.DateOfBirth;
             return entity;
         }
 
-
+   
         public EmployeeDTO MapEmployeeEntityToDTO(Employee entity)
         {
             EmployeeDTO dto = new();
@@ -26,7 +26,7 @@ namespace Employee_WebAPI.Factory
                 dto.Email = entity.Email;
                 dto.Position = entity.Position;
                 dto.EmployeeId = entity.EmployeeId;
-                dto.DateOfBirth = entity.DateOfBirth;
+               // dto.DateOfBirth = entity.DateOfBirth;
             }
             return dto;
         }

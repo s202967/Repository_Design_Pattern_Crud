@@ -3,7 +3,7 @@ using EmployeesWeb.Repository;
 
 namespace EmployeesWeb.UOW
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
          void CommitChanges();
     }

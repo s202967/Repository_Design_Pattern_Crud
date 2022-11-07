@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sunil\\Desktop\\asp.net_6.0\\Employees\\Services\\Services.csproj": {}
+    "C:\\Users\\sunil\\Desktop\\Employees\\Services\\Services.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sunil\\Desktop\\asp.net_6.0\\Employees\\Services\\Services.csproj": {
+    "C:\\Users\\sunil\\Desktop\\Employees\\Services\\Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sunil\\Desktop\\asp.net_6.0\\Employees\\Services\\Services.csproj",
+        "projectUniqueName": "C:\\Users\\sunil\\Desktop\\Employees\\Services\\Services.csproj",
         "projectName": "Services",
-        "projectPath": "C:\\Users\\sunil\\Desktop\\asp.net_6.0\\Employees\\Services\\Services.csproj",
+        "projectPath": "C:\\Users\\sunil\\Desktop\\Employees\\Services\\Services.csproj",
         "packagesPath": "C:\\Users\\sunil\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sunil\\Desktop\\asp.net_6.0\\Employees\\Services\\obj\\",
+        "outputPath": "C:\\Users\\sunil\\Desktop\\Employees\\Services\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\sunil\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -44,6 +44,10 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[11.0.0, )"
+            },
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.17, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",

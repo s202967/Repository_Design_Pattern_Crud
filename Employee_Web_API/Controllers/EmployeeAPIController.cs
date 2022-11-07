@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Employee_Web_API.Controllers
 {
-    [Route("api/EmployeeAPI")]
+    [Route("api/employees")]
     [ApiController]
     public class EmployeeAPIController : Controller
     {
@@ -23,10 +23,8 @@ namespace Employee_Web_API.Controllers
         }
 
 
-        [Route("Getall")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-
         public async Task<ActionResult<List<EmployeeDTO>>> GetAll()
         {
             var resp = await _employeeService.GetAllAsync().ConfigureAwait(false);
@@ -38,7 +36,7 @@ namespace Employee_Web_API.Controllers
 
 
 
-        [Route("Employee/{id}")]
+        [Route("{id}")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -55,15 +53,20 @@ namespace Employee_Web_API.Controllers
                 return NotFound();
             }
             var empDTOs = _employeeFactory.MapEmployeeEntityToDTO(resp);
+          
             return Ok(empDTOs);
         }
+
 
         [HttpPost]
         public async Task<ActionResult<Employee>> CreateAsync(EmployeeDTO empDTO)
         {
             var data = _employeeFactory.MapEmployeeDTOToEntity(empDTO);
-            await _employeeService.CreateAsync(data).ConfigureAwait(false);
-            return Ok("Created Sucessfully");
+            var res = await _employeeService.CreateAsync(data).ConfigureAwait(false);
+            if (res)
+                return Ok("Created Sucessfully");
+            else return BadRequest();
+
             //var data = _employeeFactory.MapEmployeeDTOToEntity(dto);
             // await _employeeService.CreateAsync(employee);
         }
@@ -74,13 +77,15 @@ namespace Employee_Web_API.Controllers
         public async Task<ActionResult<Employee>> EditAsync(EmployeeDTO empDTO)
         {
             var data = _employeeFactory.MapEmployeeDTOToEntity(empDTO);
-            await _employeeService.EditAsync(data).ConfigureAwait(false);
-            return Ok("Updated Successfully");
+            var res = await _employeeService.EditAsync(data).ConfigureAwait(false);
+            if (res)
+                return Ok("Updated Successfully");
+            else return BadRequest();
         }
 
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<EmployeeDTO>> DeleteAsync(int id)
+        public async Task<ActionResult<bool>> DeleteAsync(int id)
         {
             await _employeeService.DeleteAsync(id).ConfigureAwait(false);
             return Ok("Deleted Successfully");

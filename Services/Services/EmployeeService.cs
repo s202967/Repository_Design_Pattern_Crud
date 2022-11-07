@@ -19,8 +19,9 @@ namespace EmployeesWeb.Services
 
         public async Task<Employee> FindByIdAsync(int id)
         {
-            //return await _employeeRepository.GetByIdAsync(id).ConfigureAwait(false); 
+            //var res = await _employeeRepository.GetByIdAsync(id).ConfigureAwait(false);
             var res = await _employeeRepository.GetAllEmployeeFromProcAsync(id).ConfigureAwait(false);
+
             return res.First();
         }
 
@@ -36,25 +37,38 @@ namespace EmployeesWeb.Services
         public async Task<bool> CreateAsync(Employee employee)
 
         {
-            employee.CreatedBy = Guid.NewGuid();
-            employee.CreatedOn = DateTime.Now;
-            await _employeeRepository.AddAsync(employee);
-            _uow.CommitChanges();
+            try
+            {
+                employee.CreatedBy = Guid.NewGuid();
+                employee.CreatedOn = DateTime.Now;
+                await _employeeRepository.AddAsync(employee);
+                _uow.CommitChanges();
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
             //_employeeRepository.SaveChanges();
             return true;
         }
 
         public async Task<bool> EditAsync(Employee employee)
         {
+            try { 
             employee.ModifiedBy = Guid.NewGuid();
             employee.ModifiedOn = DateTime.Now;
             _employeeRepository.Update(employee);
             _uow.CommitChanges();
+            }
+            catch
+            {
+                return false;
+            }
             //_employeeRepository.SaveChanges();
             return true;
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
             var employee = await FindByIdAsync(id).ConfigureAwait(false);
             employee.DeletedBy = Guid.NewGuid();
@@ -64,7 +78,7 @@ namespace EmployeesWeb.Services
             //_employeeRepository.Remove(res);
             _uow.CommitChanges();
             //_employeeRepository.SaveChanges(); 
-            return true;
+            //return true;
         }
 
         /*

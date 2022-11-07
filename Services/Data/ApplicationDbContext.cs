@@ -1,6 +1,7 @@
 ﻿using EmployeesWeb.Models;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace EmployeesWeb.Data
 {
     public class ApplicationDbContext :DbContext

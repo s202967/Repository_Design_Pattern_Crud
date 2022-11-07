@@ -5,9 +5,9 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeesWeb", "EmployeesWeb\EmployeesWeb.csproj", "{E9A95167-E94D-45A5-8096-3D7CDD6622E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{3E251F00-03EF-4418-9909-F6DE3263A571}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{3E251F00-03EF-4418-9909-F6DE3263A571}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employee_WebAPI", "Employee_Web_API\Employee_WebAPI.csproj", "{584AEB6C-430C-47D5-A142-EFD07C6943E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Employee_WebAPI", "Employee_Web_API\Employee_WebAPI.csproj", "{584AEB6C-430C-47D5-A142-EFD07C6943E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

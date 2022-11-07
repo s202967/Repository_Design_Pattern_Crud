@@ -9,7 +9,7 @@ namespace Employee_WebAPI.DTO
         public string? Position { get; set; }
         public string? Email { get; set; }
 
-        [DataType(DataType.Date)]
-        public DateTime? DateOfBirth { get; set; }
+       // [DataType(DataType.Date)]
+       // public DateTime? DateOfBirth { get; set; }
     }
 }

@@ -5,7 +5,7 @@
 
 <h4>Employee Table</h4>
 
-<link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet"  />
+<link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
 <div class="container p-3">
     <div class="col-10 text-end">
         <a asp-controller="Employee" asp-action="Create" class="btn btn-primary"> Create Employee</a>
@@ -17,6 +17,9 @@
     <thead>
         <tr>
             <th>
+                Profile
+            </th>
+            <th>
                 Employee Id
             </th>
             <th>
@@ -25,6 +28,7 @@
             <th>
                 Position
             </th>
+
             <th>
                 Action
             </th>
@@ -36,6 +40,9 @@
             @foreach (var a in Model)
             {
                 <tr>
+                    <td width="2%">
+                        <img src="@a.ProfilePictureUrl" height="40" width="40px" class="rounded-circle" asp-append-version="true">
+                    </td>
                     <td width="10%">
                         @a.EmployeeId
                     </td>
@@ -45,6 +52,7 @@
                     <td width="10%">
                         @a.Position
                     </td>
+
                     <td width="10%">
                         <a asp-controller="Employee" asp-action="Edit" asp-route-id="@a.EmployeeId"> Edit</a> |
                         <a asp-controller="Employee" asp-action="Delete" asp-route-id="@a.EmployeeId"> Delete</a>

@@ -10,7 +10,7 @@ namespace Services.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public String Position { get; set; }
+        public string Position { get; set; }
         public int Email { get; set; }
 
         public int age { get; set; }

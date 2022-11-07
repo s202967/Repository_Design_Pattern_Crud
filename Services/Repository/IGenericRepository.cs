@@ -8,13 +8,13 @@ namespace EmployeesWeb.Repository
 
         Task<IEnumerable<T>> GetAllAsync();
 
-        IEnumerable<T> Find(Expression<Func<T, bool>> epression);
+        IEnumerable<T> Find(Expression<Func<T, bool>> expression);
 
         void Add(T entity);
 
         Task AddAsync(T entity);
 
-        void AddRange(IEnumerable<T> entities);
+        //void AddRange(IEnumerable<T> entities);
 
         void Remove(T entity);
 
